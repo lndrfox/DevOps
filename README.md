@@ -2,7 +2,7 @@
 
 ## Cheat Sheet
 
-### Misc
+### misc
 
 `docker pull image` - pull the specified image
 `docker images` - list all images on the machine
@@ -18,8 +18,6 @@
 `-v volume:/path/container` run with local volume volume to container path /path/container
 `--net=network` will run it on network network
 
-
-    
 
 ### stop
 
