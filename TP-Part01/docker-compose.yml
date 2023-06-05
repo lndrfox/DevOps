@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+    backend:
+        build: ./Backend
+        networks:
+            - app-network
+        depends_on:
+            - database
+        restart: on-failure
+
+    database:
+        build: ./Database/psql
+
+        environment :
+            - POSTGRES_USER=usr
+            - POSTGRES_PASSWORD=pwd
+            - POSTGRES_DB=db
+        networks:
+            - app-network
+        volumes:
+            - psql-vol:/var/lib/postgresql/data
+
+    httpd:
+        build: ./HttpServer
+        ports:
+            - 8181:80
+
+        networks:
+            - app-network
+
+        depends_on:
+            - database
+            - backend 
+networks:
+    app-network:
+
+volumes:
+    psql-vol:
