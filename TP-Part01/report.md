@@ -105,7 +105,7 @@ The application will be available at `http://localhost:8181/`
 
 ## docker compose
 
-### Most important commands
+### Most important  commands
 
 `docker-compose up` build the docker images and starts the containers.
 

@@ -3,17 +3,14 @@ on:
   workflow_run:
     branches: [main]
     workflows: ["test-backend"]
-    types:
-      - completed
+    types: [completed]
     
 
 jobs:
-  # define job to build and publish docker image
-  build-and-push-docker-image:
-    # run only when code is compiling and tests are passing
-    runs-on: ubuntu-22.04
-    # steps to perform in job
-    steps:
+  on-success:
+     runs-on: ubuntu-latest
+     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+     steps:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
@@ -38,3 +35,10 @@ jobs:
           context: ./TP-Part01/HttpServer   # relative path to the place where source code with Dockerfile is located
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd   # Note: tags has to be all lower-case
           push: true # Build and push only on the main branch
+
+
+   on-failure:
+     runs-on: ubuntu-latest
+     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+     steps:
+       - run: echo "First workflow was a failure"
