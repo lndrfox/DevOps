@@ -40,17 +40,17 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./TP-Part01/Backend/    # relative path to the place where source code with Dockerfile is located
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/simple-api  # Note: tags has to be all lower-case
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend # Note: tags has to be all lower-case
           push: ${{ github.ref == 'refs/heads/main' }} # Build and push only on the main branch
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
           context: ./TP-Part01/Database/psql # relative path to the place where source code with Dockerfile is located
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/database  # Note: tags has to be all lower-case
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/database  # Note: tags has to be all lower-case
           push: ${{ github.ref == 'refs/heads/main' }} # Build and push only on the main branch
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           context: ./TP-Part01/HttpServer   # relative path to the place where source code with Dockerfile is located
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd   # Note: tags has to be all lower-case
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd   # Note: tags has to be all lower-case
           push: ${{ github.ref == 'refs/heads/main' }} # Build and push only on the main branch
