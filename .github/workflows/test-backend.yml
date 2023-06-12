@@ -22,3 +22,5 @@ jobs:
       #finally build your app with the latest command  
       - name: Build and test with Maven
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=lndrfox_DevOps -Dsonar.organization=lndrfox -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./TP-Part01/Backend/simpleapi/pom.xml
+
+    
