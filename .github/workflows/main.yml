@@ -23,6 +23,7 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify --file ./TP-Part01/Backend/simpleapi/pom.xml
 
+
   # define job to build and publish docker image
   build-and-push-docker-image:
    needs: test-backend
@@ -32,7 +33,11 @@ jobs:
    # steps to perform in job
    steps:
      - name: Checkout code
-       uses: actions/checkout@v2.5.0
+      uses: actions/checkout@v2.5.0
+
+    - name: Login to DockerHub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
 
      - name: Build image and push backend
        uses: docker/build-push-action@v3
@@ -41,6 +46,8 @@ jobs:
          context: ./TP-Part01/Backend/
          # Note: tags has to be all lower-case
          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/simple-api
+         # build on feature branches, push only on main branch
+         push: ${{ github.ref == 'refs/heads/main' }}
 
      - name: Build image and push database
        uses: docker/build-push-action@v3
@@ -49,6 +56,8 @@ jobs:
          context: ./TP-Part01/Database/psql
          # Note: tags has to be all lower-case
          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/database
+         # build on feature branches, push only on main branch
+         push: ${{ github.ref == 'refs/heads/main' }}
 
      - name: Build image and push httpd
        uses: docker/build-push-action@v3
@@ -57,4 +66,6 @@ jobs:
          context: ./TP-Part01/HttpServer
          # Note: tags has to be all lower-case
          tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops/httpd
+         # build on feature branches, push only on main branch
+         push: ${{ github.ref == 'refs/heads/main' }}
 
