@@ -105,4 +105,57 @@ The application will be available at `http://localhost:8181/`
 
 ## docker compose
 
-###
+### Most important commands
+
+`docker-compose up` build the docker images and starts the containers.
+
+### Documentiog my docker-compose.yml
+
+``` yml
+version: '3.7'
+
+# We declare all of our services here 
+services:
+    backend:
+        build: ./Backend #path to find the find the Dockerfile
+        networks:
+            - app-network # network to run the container on
+        depends_on:
+            - database # services that must be built and started before 
+        restart: on-failure
+
+    database:
+        build: ./Database/psql #path to find the Dockerfile
+
+        environment : # Environment variables to use for the container
+            - POSTGRES_USER=usr
+            - POSTGRES_PASSWORD=pwd
+            - POSTGRES_DB=db
+        networks:
+            - app-network # network to run the container on 
+        volumes:
+            - psql-vol:/var/lib/postgresql/data # volume to use with the container and corresponding path in the container
+
+    httpd:
+        build: ./HttpServer # path to find the Dockerfile
+        ports:
+            - 8181:80 # port 80 inside of the container is mapped to port 8181 on the host machine
+
+        networks:
+            - app-network # network to run the container on 
+
+        depends_on: # services that must be built and started before 
+            - database
+            - backend 
+networks:  # declaration of our networks
+    app-network:
+
+volumes: # declaration of our volumes 
+    psql-vol:
+
+
+```
+
+## Publishing
+
+`docker login` first to login on your docker hub account, then for each image `docker tag USERNAME/imagename:version` and finally  `docker push username/imagename:version`  to push it online. (here my username is  robinarnoux )
