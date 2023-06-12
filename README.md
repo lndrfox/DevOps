@@ -4,7 +4,7 @@
 
 ### misc
 
-`docker pull image` - pull the specified image
+`docker pull image` - pull   the specified image
 `docker images` - list all images on the machine
 `docker ps -a` - list all containers that you ran
 
