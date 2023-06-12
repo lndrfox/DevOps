@@ -1,4 +1,4 @@
-name: build and build-and-push-docker-image
+name: build and push back
 
 on:
   workflow_run:
@@ -23,21 +23,6 @@ jobs:
           context: ./TP-Part01/Backend/    # relative path to the place where source code with Dockerfile is located
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend # Note: tags has to be all lower-case
           push: true # Build and push only on the main branch
-
-      - name: Build image and push database
-        uses: docker/build-push-action@v3
-        with:
-          context: ./TP-Part01/Database/psql # relative path to the place where source code with Dockerfile is located
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/database  # Note: tags has to be all lower-case
-          push: true # Build and push only on the main branch
-
-      - name: Build image and push httpd
-        uses: docker/build-push-action@v3
-        with:
-          context: ./TP-Part01/HttpServer   # relative path to the place where source code with Dockerfile is located
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd   # Note: tags has to be all lower-case
-          push: true # Build and push only on the main branch
-
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
