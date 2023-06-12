@@ -32,7 +32,7 @@ jobs:
 
    # steps to perform in job
    steps:
-     - name: Checkout code
+    - name: Checkout code
       uses: actions/checkout@v2.5.0
 
     - name: Login to DockerHub
