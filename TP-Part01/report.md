@@ -158,4 +158,4 @@ volumes: # declaration of our volumes
 
 ## Publishing
 
-`docker login` first to login on your docker hub account, then for each image `docker tag USERNAME/imagename:version` and finally  `docker push username/imagename:version`  to push it online. (here my username is  robinarnoux )
+`docker login` first to login on your docker hub account, then for each image `docker tag USERNAME/imagename:version` and finally  `docker push username/imagename:version`  to push it online. (here my username is  robinarnoux)
