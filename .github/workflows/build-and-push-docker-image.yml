@@ -1,14 +1,16 @@
-name: build-and-push-docker-image
+name: build and build-and-push-docker-image
 on:
-  #to begin you want to launch this job in main and develop
+  workflow_run:
+    workflows: ["test-backend"]
+    types:
+      - completed
   push:
-    branches: [main]
-  pull_request:
+    branches:
+      - main
 
 jobs:
   # define job to build and publish docker image
   build-and-push-docker-image:
-    needs: test-backend
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
     # steps to perform in job
