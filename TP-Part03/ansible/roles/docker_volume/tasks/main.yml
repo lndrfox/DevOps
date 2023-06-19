@@ -1,0 +1,12 @@
+---
+# tasks file for roles/docker_volume
+- name: check if psql-vol exists
+  command: 
+    cmd: docker volume inspect psql-vol
+  register: psql_vol
+  failed_when: false
+
+- name: create psql-vol
+  command: 
+    cmd: docker volume create --name psql-vol
+  when: psql_vol is failed

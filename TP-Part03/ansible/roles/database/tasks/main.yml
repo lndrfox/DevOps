@@ -1,0 +1,15 @@
+---
+# tasks file for roles/database
+- name: Create db container and connect to network
+  community.docker.docker_container:
+    name: database
+    image: "robinarnoux/database:latest"
+    networks:
+      - name: "app-network"
+    volumes:
+      - psql-vol:/var/lib/postgresql/data
+    auto_remove: true 
+    env:
+      POSTGRES_USER: "{{ psql_user }}"
+      POSTGRES_PASSWORD: "{{ psql_password }}"
+      POSTGRES_DB: "{{ psql_db }}"

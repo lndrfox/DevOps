@@ -5,3 +5,7 @@ all:
  children:
    prod:
      hosts: robinjarnoux.takima.cloud
+     vars: 
+       psql_user: usr
+       psql_password: pwd
+       psql_db: db
