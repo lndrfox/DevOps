@@ -6,4 +6,5 @@
     image: "robinarnoux/httpd:latest"
     networks:
       - name: "app-network"
-    auto_remove: true
+    ports:
+      - 80:80

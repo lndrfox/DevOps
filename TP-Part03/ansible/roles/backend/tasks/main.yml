@@ -6,4 +6,3 @@
     image: "robinarnoux/backend:latest"
     networks:
       - name: "app-network"
-    auto_remove: true

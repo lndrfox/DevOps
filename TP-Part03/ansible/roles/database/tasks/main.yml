@@ -8,7 +8,6 @@
       - name: "app-network"
     volumes:
       - psql-vol:/var/lib/postgresql/data
-    auto_remove: true 
     env:
       POSTGRES_USER: "{{ psql_user }}"
       POSTGRES_PASSWORD: "{{ psql_password }}"
