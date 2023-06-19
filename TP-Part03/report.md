@@ -124,3 +124,6 @@ Here is my playbook.yml now
 - database creates the database container, connects it to the network, the volume and feeds in environment variables
 - backend creates the backend container, and connects it to the network
 - httpd creates the httpd container and connects it to the network
+
+
+`ansible-playbook -i inventories/setup.yml playbook.yml`
