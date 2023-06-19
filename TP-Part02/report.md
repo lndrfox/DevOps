@@ -38,3 +38,12 @@ jobs: # here we declare the various jobs of the workflow, they will run in parra
 
 
 ```
+
+### Quality gate configuration 
+
+To configure the quality gate I used the following for the run line of the test job in the github actions main.yml file. 
+
+```yml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=lndrfox_DevOps -Dsonar.organization=lndrfox -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./TP-Part01/Backend/simpleapi/pom.xml
+
+```
