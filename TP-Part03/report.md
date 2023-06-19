@@ -100,3 +100,5 @@ Then in roles/docker/tasks/main.yml we have the docker setup list of tasks itsel
   tags: docker
 
 ```
+
+### Deploy your app
