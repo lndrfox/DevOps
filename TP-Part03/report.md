@@ -1,5 +1,11 @@
 # TP PART 03
 
+# Run ansible
+
+cd to `TP-Part03/ansible` then run `ansible-playbook -i inventories/setup.yml playbook.yml`
+
+
+
 ## Inventory 
 
 The inventory should be at ansible/inventories/inventory.yml inside of the project. Here is the content of my inventory at this point :
@@ -116,6 +122,7 @@ Here is my playbook.yml now
     - database
     - backend
     - httpd
+    - front
 ```
 
 - The role docker installs docker (it's the same as before)
@@ -126,4 +133,3 @@ Here is my playbook.yml now
 - httpd creates the httpd container and connects it to the network
 
 
-`ansible-playbook -i inventories/setup.yml playbook.yml`
