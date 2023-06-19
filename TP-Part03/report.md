@@ -102,3 +102,25 @@ Then in roles/docker/tasks/main.yml we have the docker setup list of tasks itsel
 ```
 
 ### Deploy your app
+
+Here is my playbook.yml now
+
+```yml
+- hosts: all
+  gather_facts: false
+  become: yes
+  roles:
+    - docker
+    - docker_network
+    - docker_volume
+    - database
+    - backend
+    - httpd
+```
+
+- The role docker installs docker (it's the same as before)
+- docker_network creates the network all containers will be connected to
+- docker_volume creates the volume for database persistancy
+- database creates the database container, connects it to the network, the volume and feeds in environment variables
+- backend creates the backend container, and connects it to the network
+- httpd creates the httpd container and connects it to the network

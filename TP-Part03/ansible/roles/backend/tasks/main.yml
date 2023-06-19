@@ -6,6 +6,8 @@
     image: "robinarnoux/backend:latest"
     networks:
       - name: "app-network"
+    ports:
+      - 8080:80
     env:
       POSTGRES_USER: "{{ psql_user }}"
       POSTGRES_PASSWORD: "{{ psql_password }}"
