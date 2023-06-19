@@ -1,0 +1,10 @@
+- hosts: all
+  gather_facts: false
+  become: yes
+  roles:
+    - docker
+    - docker_network
+    - docker_volume
+    - database
+    - backend
+    - httpd

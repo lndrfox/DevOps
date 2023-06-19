@@ -1,0 +1,11 @@
+all:
+ vars:
+   ansible_user: centos
+   ansible_ssh_private_key_file: /home/robin/DevOps/TP-Part03/id_rsa
+ children:
+   prod:
+     hosts: robinjarnoux.takima.cloud
+     vars: 
+       psql_user: usr
+       psql_password: pwd
+       psql_db: db

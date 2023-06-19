@@ -1,0 +1,10 @@
+---
+# tasks file for roles/httpd
+- name: Create httpd container and connect to network
+  community.docker.docker_container:
+    name: httpd
+    image: "robinarnoux/httpd:latest"
+    networks:
+      - name: "app-network"
+    ports:
+      - 80:80

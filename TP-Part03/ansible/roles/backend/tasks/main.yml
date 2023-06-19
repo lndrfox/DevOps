@@ -1,0 +1,8 @@
+---
+# tasks file for roles/backend
+- name: Create backend container and connect to network
+  community.docker.docker_container:
+    name: backend
+    image: "robinarnoux/backend:latest"
+    networks:
+      - name: "app-network"
