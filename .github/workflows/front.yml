@@ -29,3 +29,10 @@ jobs:
           context: ./TP-Part01/HttpServer   # relative path to the place where source code with Dockerfile is located
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd   # Note: tags has to be all lower-case
           push: true # Build and push only on the main branch
+
+      - name: Build image and push front
+        uses: docker/build-push-action@v3
+        with:
+          context: ./TP-Part03/devops-front   # relative path to the place where source code with Dockerfile is located
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/front   # Note: tags has to be all lower-case
+          push: true # Build and push only on the main branch
